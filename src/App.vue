@@ -1,50 +1,42 @@
 <template>
   <div id="app">
-    <Header />
-    <AddTodo v-on:add-todo="addTodo"/>
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
+    <Header/>
+    <Items v-bind:items="items" v-on:del-item="deleteItem"/>
+    <AddWishItem v-on:add-item="addItem"/>
   </div>
 </template>
 
 <script>
   import Header from './components/layouts/Header';
-  import Todos from './components/Todos';
-  import AddTodo from './components/AddTodo';
+  import Items from './components/Items';
+  import AddWishItem from './components/AddWishItem';
 
   export default {
     name: 'app',
     components: {
-      AddTodo,
+      AddWishItem,
       Header,
-      Todos
+      Items
     },
     data() {
       return {
-        todos: [
+        items: [
           {
             id: 1,
-            title: 'Todo One',
-            completed: false
-          },
-          {
-            id: 2,
-            title: 'Todo Two',
-            completed: true
-          },
-          {
-            id: 3,
-            title: 'Todo Three',
-            completed: false
+            title: 'Harry Potter 1',
+            description: 'De steen der wijzen',
+            img: 'https://s.s-bol.com/imgbase0/imagebase3/large/FC/3/8/8/1/666811883.jpg',
+            link: 'https://www.bol.com/nl/p/harry-potter-deel-1-harry-potter-steen-der-wijzen/666811883/?Referrer=ADVNLGOO002008P-G-89205211162-S-851936400856-666811883&gclid=CjwKCAiA35rxBRAWEiwADqB37yjFbUI8lWIVuscHIz-NlnCPPUv0_6IdCMNKzwHA7E1XqeitK83I2BoCeekQAvD_BwE'
           }
         ]
       }
     },
     methods: {
-      deleteTodo(id) {
-        this.todos = this.todos.filter(todo => todo.id !== id);
+      deleteItem(id) {
+        this.items = this.items.filter(item => item.id !== id);
       },
-      addTodo(newTodo) {
-        this.todos = [...this.todos, newTodo];
+      addItem(newItem) {
+        this.items = [...this.items, newItem];
       }
     }
   }
